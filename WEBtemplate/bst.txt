@@ -1,0 +1,84 @@
+
+public class binary {
+	Node root;
+	public binary(){
+		root = null;
+	}
+	public boolean find(int n) {
+		Node current = root;
+		while(current!=null) {
+			if(current.data==n) {
+				return true;
+			}else if(current.data>n) {
+				current=current.left;
+				
+			}else {
+				current = current.right;
+			}
+		}
+		return false;
+	}
+	public void insert(int n) {
+		Node node = new Node( n);
+		if(root == null) {
+			root = node;
+			return;
+		}
+		Node current = root;
+		while(true) {
+			if(current.data>n) {
+				if(current.left==null) {
+					current.left = node;
+					return;
+				}
+				current = current.left;
+			}
+			else {
+				if(current.right==null) {
+						current.right = node;
+						return;
+				}
+				current = current.right;
+			}
+		}
+	}
+	
+	
+
+	public void display (Node root){
+			if(root!=null) {
+				display(root.left);
+				System.out.println(" " + root.data);
+	
+				display(root.right);
+			}
+		}
+	
+		public static void main(String[] args) {
+			binary b = new binary();
+			b.insert(12);
+			b.insert(11);
+			b.insert(15);
+			b.insert(13);
+			b.insert(16);
+			b.insert(17);
+			b.insert(14);
+			b.display(b.root);
+			b.find(11) ;
+			
+			
+		}
+		
+}
+class Node{
+	Node left;
+	Node right;
+	int data;
+	
+	public Node(int n) {
+		data = n;
+		left = null;
+		right = null;
+	}
+
+}

@@ -1,0 +1,27 @@
+<?php  
+$config = array(); // указываем, что переменная $config это массив  
+$config['server'] = "localhost"; //сервер MySQL. Обычно это localhost  
+$config['login'] ="root"; //пользователь MySQL  
+$config['passw'] = ""; //пароль от пользователя MySQL  
+$config['name_db'] = "auth_reg"; //название нашей БД  
+
+$connect = mysql_connect($config['server'], $config['login'], $config['passw']) or die("Error!"); // подключаемся к MySQL или, в случаи  ошибки, прекращаем выполнение кода 
+mysql_select_db($config['name_db'], $connect) or die("Error!"); // выбираем БД  или, в случаии ошибки, прекращаем выполнение кода  
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Вход</title>
+</head>
+
+<body>
+<div align="center">
+<form action="" method="post" enctype="multipart/form-data">
+Логин:<br /><input name="login" type="text" size="20"><br />
+Пароль:<br /><input name="password" type="password" size="20"><br />
+<input name="submit" type="submit" value="Войти"><br />
+</form>
+</div>
+</body>
+</html>

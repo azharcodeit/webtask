@@ -1,0 +1,76 @@
+<html> 
+
+<head> 
+<style> 
+
+.bir{border:2px solid black; 
+width:295px; 
+
+} 
+.lef{ text-align:right; 
+margin-top:0px;} 
+.rig{text-align:left; 
+margin-top:-15px;} 
+#cards .card .title{ 
+flex-grow: 1; 
+} 
+
+#loading{ 
+display: none; 
+} 
+#cards{ 
+width:300px; 
+height:200px; 
+border: 1px solid blue; 
+} 
+#myImage{ 
+position:absolute; 
+margin-top:20px; 
+margin-left:20px; 
+} 
+</style> 
+<script> 
+function show() { 
+document.getElementById("myDiv").style.display="block"; 
+document.getElementById("load").innerHTML='loading'; 
+
+setTimeout("hide()", 5000); // 5 seconds 
+} 
+
+function hide() { 
+document.getElementById("myDiv").style.display="none"; 
+document.getElementById("load").innerHTML='loaded'; 
+document.getElementById("cards").innerHTML=' <div class="bir"><div class="lef">55000</div><div class="rig"></div>Mercedes2</div><div class="bir"><div class="lef">25000</div><div class="rig"></div>Toyota2</div><div class="bir"><div class="lef">27000</div><div class="rig"></div>Toyota1</div><div class="bir"><div class="lef">65000</div><div class="rig"></div>Mercedes1</div>'; 
+
+} 
+function maker(){ document.getElementById("cards").innerHTML=' <div class="bir"><div class="lef">45000</div><div class="rig"></div>Mercedes1</div><div class="bir"><div class="lef">65000</div><div class="rig"></div>Mercedes2</div><div class="bir"><div class="lef">25000</div><div class="rig"></div>Toyota1</div><div class="bir"><div class="lef">45000</div><div class="rig"></div>Toyota2</div>';} 
+function price(){ document.getElementById("cards").innerHTML=' <div class="bir"><div class="lef">40000</div><div class="rig"></div>Toyota1</div><div class="bir"><div class="lef">27000</div><div class="rig"></div>Toyota2</div><div class="bir"><div class="lef">65000</div><div class="rig"></div>Mercedes2</div><div class="bir"><div class="lef">50000</div><div class="rig"></div>Mercedes1</div>';} 
+
+
+
+
+</script> 
+
+</head> 
+
+<body> 
+<button id="load" onclick="show();">Loa</button> 
+<div id = "myDiv" style="display:none"><img id = "myImage" width="200px" height="200px" src = "https://www.cattani.it/wp-content/uploads/2016/08/ajax-loadin.."></div> 
+<div> 
+<button id="sortByMaker" onclick="maker();">Sort by maker</button> 
+<button id="sortByPrice" onclick="price();">Sort by price</button> 
+</div> 
+<div id="cards"> 
+
+
+
+
+</div> 
+
+
+<script defer> 
+/* Write your code here */ 
+</script> 
+</body> 
+
+</html>

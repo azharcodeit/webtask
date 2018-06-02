@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      #cards .card{
+        border:1px solid red;
+        display:flex;
+        width:300px;
+      }
+      #cards .card .title{
+        flex-grow: 1;
+      }
+      #cards .card .price{
+        font-weight: bold;
+        padding-right: 20px;
+      }
+      #loading{
+        display: none;
+      }
+      #cards{
+        width:300px;
+        height:200px;
+        border: 1px solid blue;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <button id="load">Load</button>
+    <div>
+      <button id="sortByMaker">Sort by maker</button>
+      <button id="sortByPrice">Sort by price</button>
+    </div>
+    <div id="cards">
+      <img width="300px" height="200px" id="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"/>
+    </div>
+
+
+    <script defer>
+		let a;
+		function process(responses){
+			a = responses;
+			for (var i = 0; i < responses.length; i++) {
+				 var div = document.createElement('div');
+				 div.setAttribute("class","card");
+				 var car = document.createElement('div');
+				 car.setAttribute("class","title");
+				 car.innerHTML=(responses[i].maker+" "+responses[i].model)
+				 div.appendChild(car);
+				 var price = document.createElement('div');
+				 price.setAttribute('class','price');
+				 price.innerHTML=(responses[i].price);
+				 
+				 div.appendChild(price);
+				 document.getElementById("cards").appendChild(div);
+			}
+		}
+		
+		function onSuccess(response){
+			return response.json().then(process);
+		}
+		
+		function onFail(response){}
+		
+		function call(event){
+			document.getElementById('loading').style.display = 'inline-block';
+			document.getElementById('load').innerHTML="Loading..."
+			setTimeout(function(){
+				document.getElementById('loading').style.display = 'none';
+				document.getElementById('load').innerHTML="Items are loaded"
+				fetch("http://demo4296963.mockable.io/listCars").then(onSuccess,onFail);
+			}, 2000);
+		}
+		function sortByMaker(event){
+			document.getElementById('cards').innerHTML="";
+			a.sort((a,b) => a.maker.localeCompare(b.maker));
+			process(a);
+		}
+		function sortByPrice(event){
+			document.getElementById('cards').innerHTML="";
+			a.sort((a,b) => a.price-b.price);
+			process(a);
+		}
+		
+		document.querySelector("#load").addEventListener("click",call);
+		document.querySelector("#sortByMaker").addEventListener("click",sortByMaker);
+		document.querySelector("#sortByPrice").addEventListener("click",sortByPrice);
+    </script>
+  </body>
+
+</html>
